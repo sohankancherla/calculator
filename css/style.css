@@ -1,8 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap');
 
 body {
     height: 100vh;
     margin: 0;
+    background-color: #18181b;
+    overflow: auto;
 }
 
 main {
@@ -13,16 +15,74 @@ main {
 }
 
 .calculator {
-    background-color: #121212;
+    background-color: #18181b;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.console {
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    word-break: break-all;
+    justify-content: center;
+    align-items: end;
+    gap: 12px;
+    width: 228px;
+    padding: 12px;
+}
+
+.console span {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    color: #ebfef5;
+    white-space: normal;
+}
+
+#current-text {
+    font-size: 32px;
 }
 
 .buttons {
     display: flex;
+    gap: 4px;
 }
 
 .column {
     display: flex;
     flex-direction: column;
+    gap: 4px;
+}
+
+button {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+}
+
+.outline {
+    color: #5becaf;
+    border: 1px solid #5becaf;
+    background-color: #18181b;
+}
+
+.outline:hover {
+    background-color: #002e22;
+}
+
+.solid {
+    color: #002e22;
+    background-color: #2cdb97;
+    border: none;
+}
+
+.solid:hover {
+    background-color: #5becaf;
 }
 
 .footer {
@@ -30,14 +90,19 @@ main {
     bottom: 0;
     width: 100%;
     text-align: center;
-    font-family: Inter, sans-serif;
- }
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
 
- .footer span {
-    color: #121212;
- }
+.footer span {
+    color: #ebfef5;
+}
 
- a {
+a {
     text-decoration: none;
-    color: #121212;
- }
+    color: #ebfef5;
+}
+
+svg {
+    height: 22px;
+    width: 22px;
+}
