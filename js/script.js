@@ -71,6 +71,9 @@ function typedEquals() {
 
 function delPressed() {
     clear = false;
+    if (rightNumber.slice(-1) === ".") {
+        decimal = false;
+    }
     rightNumber = rightNumber.slice(0,-1)
     if (!rightNumber) {
         rightNumber = "0";
@@ -80,9 +83,12 @@ function delPressed() {
 }
 
 function clearPressed() {
-    let leftNumber = "";
-    let rightNumber = "0";
-    let operator = "";
+    leftNumber = "";
+    rightNumber = "0";
+    operator = "";
+    sign = "";
+    clear = true;
+    decimal = false;
     topText.textContent = leftNumber;
     currentText.textContent = rightNumber;
 }
@@ -97,11 +103,21 @@ function changeSign() {
     currentText.textContent = sign + rightNumber;
 }
 
+function addDecimal() {
+    if (!decimal) {
+        rightNumber += ".";
+        currentText.textContent = sign + rightNumber;
+        clear = false;
+        decimal = true;
+    }
+}
+
 let leftNumber = "";
 let rightNumber = "0";
 let operator = "";
 let sign = "";
 let clear = true;
+let decimal = false;
 
 let topText = document.querySelector("#top-text");
 let currentText = document.querySelector("#current-text");
@@ -133,6 +149,9 @@ clearButton.addEventListener("click", () => clearPressed());
 
 const signButton = document.querySelector("#plus-minus");
 signButton.addEventListener("click", () => changeSign());
+
+const decimalButton = document.querySelector("#decimal");
+decimalButton.addEventListener("click", () => addDecimal());
 
 
 document.addEventListener("keydown", event => {
