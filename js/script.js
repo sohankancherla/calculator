@@ -48,6 +48,7 @@ function typedOperator(operatorPressed) {
     currentText.textContent = rightNumber;
     clear = true;
     sign = "";
+    decimal = false;
 }
 
 function typedEquals() {
@@ -56,6 +57,7 @@ function typedEquals() {
         result = operate(operator, +leftNumber, +rightNumber);
         topText.textContent = leftNumber + " " + operator + " " + rightNumber;
         rightNumber = result.toString();
+        decimal = result % 1 ? true : false;
         if (rightNumber.substring(0,1) === "-") {
             sign = "-";
             rightNumber = rightNumber.slice(1);
@@ -156,7 +158,21 @@ decimalButton.addEventListener("click", () => addDecimal());
 
 document.addEventListener("keydown", event => {
     let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    let operators = ["+", "-", "*", "/"]
     if (numbers.includes(event.key)){
         typedNumber(clear ? event.key : rightNumber + event.key);
+    }
+    else if (operators.includes(event.key)) {
+        typedOperator(event.key);
+    }
+    else if (event.key === "=" || event.key === "Enter") {
+        event.preventDefault();
+        typedEquals();
+    }
+    else if (event.key === "Backspace" || event.key === "Delete") {
+        delPressed();
+    }
+    else if (event.key === ".") {
+        addDecimal();
     }
 });
