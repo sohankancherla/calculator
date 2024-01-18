@@ -41,8 +41,15 @@ function typedNumber(displayText) {
 }
 
 function typedOperator(operatorPressed) {
+    rightNumber = sign + rightNumber
+    if (leftNumber) {
+        result = operate(operator, +leftNumber, +rightNumber)
+        leftNumber = result.toString();
+    }
+    else {
+        leftNumber = sign + rightNumber;
+    }
     operator = operatorPressed
-    leftNumber = sign + rightNumber;
     rightNumber = "0";
     topText.textContent = leftNumber + " " + operator;
     currentText.textContent = rightNumber;
