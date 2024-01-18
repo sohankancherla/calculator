@@ -34,7 +34,7 @@ function operate(operator, a, b) {
 
 function typedNumber(displayText) {
     rightNumber = displayText;
-    document.querySelector("#current-text").textContent = displayText;
+    currentText.textContent = displayText;
     if (rightNumber !== "0") {
         clear = false;
     }
@@ -44,17 +44,17 @@ function typedOperator(operatorPressed) {
     operator = operatorPressed
     leftNumber = rightNumber;
     rightNumber = "0";
-    document.querySelector("#top-text").textContent = leftNumber + " " + operator;
-    document.querySelector("#current-text").textContent = rightNumber;
+    topText.textContent = leftNumber + " " + operator;
+    currentText.textContent = rightNumber;
     clear = true;
 }
 
 function typedEquals() {
     if (operator) {
         result = operate(operator, +leftNumber, +rightNumber);
-        document.querySelector("#top-text").textContent = leftNumber + " " + operator + " " + rightNumber;
+        topText.textContent = leftNumber + " " + operator + " " + rightNumber;
         rightNumber = result.toString();
-        document.querySelector("#current-text").textContent = rightNumber;
+        currentText.textContent = rightNumber;
         operator = "";
         clear = true;
     }
@@ -67,13 +67,24 @@ function delPressed() {
         rightNumber = "0";
         clear = true;
     }
-    document.querySelector("#current-text").textContent = rightNumber;
+    currentText.textContent = rightNumber;
+}
+
+function clearPressed() {
+    let leftNumber = "";
+    let rightNumber = "0";
+    let operator = "";
+    topText.textContent = leftNumber;
+    currentText.textContent = rightNumber;
 }
 
 let leftNumber = "";
 let rightNumber = "0";
 let operator = "";
 let clear = true;
+
+let topText = document.querySelector("#top-text");
+let currentText = document.querySelector("#current-text");
 
 const numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach(button => {
@@ -96,6 +107,9 @@ equalButton.addEventListener("click", () => typedEquals());
 
 const delButton = document.querySelector("#delete");
 delButton.addEventListener("click", () => delPressed());
+
+const clearButton = document.querySelector("#clear");
+clearButton.addEventListener("click", () => clearPressed());
 
 document.addEventListener("keydown", event => {
     let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
