@@ -35,7 +35,9 @@ function operate(operator, a, b) {
 function typedNumber(displayText) {
     rightNumber = displayText;
     document.querySelector("#current-text").textContent = displayText;
-    clear = false;
+    if (rightNumber !== "0") {
+        clear = false;
+    }
 }
 
 function typedOperator(operatorPressed) {
@@ -51,10 +53,21 @@ function typedEquals() {
     if (operator) {
         result = operate(operator, +leftNumber, +rightNumber);
         document.querySelector("#top-text").textContent = leftNumber + " " + operator + " " + rightNumber;
-        document.querySelector("#current-text").textContent = result;
+        rightNumber = result.toString();
+        document.querySelector("#current-text").textContent = rightNumber;
         operator = "";
         clear = true;
     }
+}
+
+function delPressed() {
+    clear = false;
+    rightNumber = rightNumber.slice(0,-1)
+    if (!rightNumber) {
+        rightNumber = "0";
+        clear = true;
+    }
+    document.querySelector("#current-text").textContent = rightNumber;
 }
 
 let leftNumber = "";
@@ -80,6 +93,9 @@ operatorButtons.forEach(button => {
 
 const equalButton = document.querySelector("#equals");
 equalButton.addEventListener("click", () => typedEquals());
+
+const delButton = document.querySelector("#delete");
+delButton.addEventListener("click", () => delPressed());
 
 document.addEventListener("keydown", event => {
     let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
