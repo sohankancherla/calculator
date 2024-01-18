@@ -19,7 +19,7 @@
 
 ## About The Project
 
-This is a minimal javascript calculator that is capable of doing basic calculations. The webpage supports keyboard input and rounds the result to 5 decimal places to prevent the screen from overflowing.
+This is a minimal javascript calculator that is capable of doing basic calculations. The webpage supports keyboard input and rounds the result to 5 decimal places to prevent the screen from overflowing. The calculator does not follow pemdas and instead evaluates each pair of numbers at a time.
 
 The project is part of [The Odin Project's Foundations course](https://www.theodinproject.com/lessons/foundations-calculator).
 
